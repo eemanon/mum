@@ -6,19 +6,21 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Queue;
+
 public class CustomView extends View {
-    public synchronized void setCoords(float[] coords) {
+    public synchronized void setCoords(double[] coords) {
         this.coords = coords;
     }
 
-    private float[] coords;
+    private double[] coords;
 
     public CustomView(Context context, AttributeSet attr) {
         super(context, attr);
-        coords = new float[]{0.0f,0.0f};
+        coords = new double[]{0.0f,0.0f};
     }
     @Override
-    public void onDraw(Canvas canvas){X
+    public void onDraw(Canvas canvas){
         canvas.drawColor(Color.rgb(32,32,32));
 
         Paint redPaint = new Paint();
@@ -31,6 +33,6 @@ public class CustomView extends View {
         bluePaint.setColor(Color.rgb(0, 0, 255));
         canvas.drawLine(canvas.getWidth()/2+0.0f,0.0f, canvas.getWidth()/2+0.0f, canvas.getHeight()+0.0f, redPaint);
         canvas.drawLine(0.0f,canvas.getHeight()/2+0.0f, canvas.getWidth()+0.0f,canvas.getHeight()/2+0.0f, redPaint);
-        canvas.drawLine(canvas.getWidth()/2+0.0f, canvas.getHeight()/2+0.0f, canvas.getWidth()/2+coords[0], canvas.getHeight()/2-coords[1], greenPaint);
+        canvas.drawLine(canvas.getWidth()/2+0.0f, canvas.getHeight()/2+0.0f, (float) (canvas.getWidth()/2+coords[0]*4), (float) (canvas.getHeight()/2+coords[1]*4), greenPaint);
     }
 }
